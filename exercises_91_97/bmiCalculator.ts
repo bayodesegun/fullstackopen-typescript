@@ -1,3 +1,6 @@
+import parseArgs from "./utils";
+
+
 const calculateBmi = (height: number, weight: number): string => {
   const bmi: number = weight / ((height / 100) ** 2)
   if (bmi < 16.0) {
@@ -19,4 +22,17 @@ const calculateBmi = (height: number, weight: number): string => {
   }
 }
 
-console.log(calculateBmi(180, 74))
+try {
+  const { arg1, arg2 } = parseArgs(process.argv);
+  if (!(arg2 instanceof Array)) {
+    console.log(calculateBmi(arg1, arg2));
+  } else {
+    throw new Error('Too many inputs. Need only two!');
+  }
+} catch (error: unknown) {
+  let errorMsg: string = 'Something went wrong. ';
+  if (error instanceof Error) {
+    errorMsg += error.message;
+  }
+  console.warn(errorMsg);
+}

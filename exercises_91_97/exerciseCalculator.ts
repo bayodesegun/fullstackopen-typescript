@@ -1,3 +1,6 @@
+import parseArgs from "./utils";
+
+
 interface exerciseResult  {
   periodLength: number;
   trainingDays: number;
@@ -40,4 +43,19 @@ const calculateExercises = (hours: number[], target: number): exerciseResult => 
   }
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+try {
+  const { arg1, arg2 } = parseArgs(process.argv);
+  if (arg2 instanceof Array) {
+    console.log(calculateExercises(arg2, arg1));
+  } else {
+    throw new Error('Too few inputs. Need at least three!');
+  }
+} catch (error: unknown) {
+  let errorMsg: string = 'Something went wrong. ';
+  if (error instanceof Error) {
+    errorMsg += error.message;
+  }
+  console.warn(errorMsg);
+}
+
+// console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
