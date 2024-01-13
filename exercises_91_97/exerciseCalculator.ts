@@ -1,4 +1,4 @@
-import parseArgs from "./utils";
+import { parseArgs } from "./utils";
 
 
 interface exerciseResult  {

@@ -1,9 +1,15 @@
-export interface commandLineArgs {
+interface commandLineArgs {
   arg1: number;
   arg2: number | number [];
 }
 
-const parseArgs = (args: string []): commandLineArgs => {
+export interface webBmiParams {
+  height?: string;
+  weight?: string;
+  error?: boolean;
+}
+
+export const parseArgs = (args: string []): commandLineArgs => {
   if (args.length < 4) throw new Error('Not enough input. Please try again.');
   let expectedArgs: number [] = [];
   for (let num of args.slice(2)) {
@@ -23,4 +29,27 @@ const parseArgs = (args: string []): commandLineArgs => {
   }
 }
 
-export default parseArgs
+export const parseWebBmiParams = (params: webBmiParams): webBmiParams => {
+  let ret: webBmiParams = {
+    height: 'Height is missing!',
+    weight: 'Weight is missing!'
+  };
+  if (params.height) {
+    if (isNaN(Number(params.height))) {
+      ret.height = 'Height should be a number!';
+      ret.error = true;
+    } else {
+      ret.height = params.height;
+    }
+  }
+  if (params.weight) {
+    if (isNaN(Number(params.weight))) {
+      ret.weight = 'Weight should be a number!';
+      ret.error = true;
+    } else {
+      ret.weight = params.weight;
+    }
+  }
+
+  return ret;
+}
