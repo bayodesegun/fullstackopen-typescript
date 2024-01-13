@@ -14,7 +14,7 @@ app.get('/bmi', (req, res) => {
   const params: webBmiParams = {
     height: height?.toString(),
     weight: weight?.toString()
-  }
+  };
   const validatedParams = parseWebBmiParams(params);
   if (validatedParams.error) {
     res.status(400).send(validatedParams);

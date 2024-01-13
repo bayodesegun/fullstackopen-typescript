@@ -11,8 +11,8 @@ export interface webBmiParams {
 
 export const parseArgs = (args: string []): commandLineArgs => {
   if (args.length < 4) throw new Error('Not enough input. Please try again.');
-  let expectedArgs: number [] = [];
-  for (let num of args.slice(2)) {
+  const expectedArgs: number [] = [];
+  for (const num of args.slice(2)) {
     if (isNaN(Number(num))) throw new Error("Please input only numbers!");
     expectedArgs.push(Number(num));
   }
@@ -27,16 +27,16 @@ export const parseArgs = (args: string []): commandLineArgs => {
       arg2: expectedArgs.slice(1)
     };
   }
-}
+};
 
 export const parseWebBmiParams = (params: webBmiParams): webBmiParams => {
-  let ret: webBmiParams = {
+  const ret: webBmiParams = {
     height: 'Height is missing!',
     weight: 'Weight is missing!'
   };
   if (params.height) {
     if (isNaN(Number(params.height))) {
-      ret.height = 'Height should be a number!';
+      ret.height = `Height should be a number. '${params.height}' specified.`;
       ret.error = true;
     } else {
       ret.height = params.height;
@@ -44,7 +44,7 @@ export const parseWebBmiParams = (params: webBmiParams): webBmiParams => {
   }
   if (params.weight) {
     if (isNaN(Number(params.weight))) {
-      ret.weight = 'Weight should be a number!';
+      ret.weight = `Weight should be a number. '${params.weight}' specified.`;
       ret.error = true;
     } else {
       ret.weight = params.weight;
@@ -52,4 +52,4 @@ export const parseWebBmiParams = (params: webBmiParams): webBmiParams => {
   }
 
   return ret;
-}
+};

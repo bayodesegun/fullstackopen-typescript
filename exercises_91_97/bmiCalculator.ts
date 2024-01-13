@@ -2,25 +2,25 @@ import { parseArgs } from "./utils";
 
 
 export const calculateBmi = (height: number, weight: number): string => {
-  const bmi: number = weight / ((height / 100) ** 2)
+  const bmi: number = weight / ((height / 100) ** 2);
   if (bmi < 16.0) {
-    return 'Underweight (Severe thinness)'
+    return 'Underweight (Severe thinness)';
   } else if (bmi < 17.0) {
-    return 'Underweight (Moderate thinness)'
+    return 'Underweight (Moderate thinness)';
   } else if (bmi < 18.5) {
-    return 'Underweight (Mild thinness)'
+    return 'Underweight (Mild thinness)';
   } else if (bmi < 25.0) {
-    return 'Normal (healthy weight)'
+    return 'Normal (healthy weight)';
   } else if (bmi < 30.0) {
-    return 'Overweight (Pre-obese)'
+    return 'Overweight (Pre-obese)';
   } else if (bmi < 35.0) {
-    return 'Obese (Class I)'
+    return 'Obese (Class I)';
   } else if (bmi < 40.0) {
-    return 'Obese (Class II)'
+    return 'Obese (Class II)';
   } else {
-    return 'Obese (Class III)'
+    return 'Obese (Class III)';
   }
-}
+};
 
 if (process.argv[1].includes('calculateBmi')) {
   try {

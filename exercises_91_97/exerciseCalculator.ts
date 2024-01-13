@@ -40,8 +40,8 @@ const calculateExercises = (hours: number[], target: number): exerciseResult => 
     ratingDescription,
     target,
     average
-  }
-}
+  };
+};
 
 try {
   const { arg1, arg2 } = parseArgs(process.argv);
